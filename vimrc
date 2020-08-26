@@ -50,7 +50,14 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'morhetz/gruvbox'
+
+" colorscheme 
+"Plug 'morhetz/gruvbox'
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'miyakogi/seiya.vim'
+
+" git status plug
+Plug 'airblade/vim-gitgutter'
 
 " Error checking
 Plug 'dense-analysis/ale'
@@ -75,15 +82,39 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 
 call plug#end()
 
-" set a colorscheme
-let g:gruvbox_termcolors=256
-let g:gruvbox_italic=1
-set background=dark
-let g:gruvbox_contrast_dark='medium'
-colorscheme gruvbox
 
-" airline settings
-let g:airline_theme='ayu_dark'
+"" ===
+"" set a colorscheme
+"" ===
+color default
+
+"let g:seiya_auto_enable=1
+
+"colorscheme solarized
+"set background=dark
+"let g:solarized_termcolors=256
+
+"colorscheme gruvbox
+"let g:gruvbox_termcolors=256
+"let g:gruvbox_italic=1
+"set background=dark
+"let g:gruvbox_contrast_dark='medium'
+
+
+"" ===
+"" git status plug 
+"" vim-gitgutter
+"" === 
+"" You can jump between hunks with [c and ]c. You can preview, stage, and undo
+"" hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
+set updatetime=100
+" remove the limits of the size of signs
+let g:gitgutter_max_signs = -1
+
+"" ===
+"" airline settings
+"" ===
+let g:airline_theme='ayu_mirage'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -103,7 +134,7 @@ map <LEADER>f :RangerNewTab<CR>
 "" ===
 "" vim table mode for markdown
 "" ===
-map <LEADER>tm :TableModeToggle<CR>
+map tm :TableModeToggle<CR>
 
 "" tagbar 
 "nmap <F8> :TagbarToggle<CR>
@@ -112,8 +143,8 @@ map <LEADER>tm :TableModeToggle<CR>
 "" vim markdown preview
 "" ===
 source $HOME/.vim/md-snippets.vim
-map <LEADER>mp :MarkdownPreview<CR>
-map <LEADER>ms :MarkdownPreviewStop<CR>
+map mp :MarkdownPreview<CR>
+map ms :MarkdownPreviewStop<CR>
 
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
