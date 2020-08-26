@@ -176,27 +176,6 @@ let g:mkdp_preview_options = {
 "        \ }
 
 
-set number
-set relativenumber
-set cul
-
-set list
-set listchars=tab:>-,trail:-
-set laststatus=2
-set ruler
-
-set smartindent
-set expandtab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
-
-" very useful
-set backspace=indent,eol,start
-" make cursor stay at the last position of last time
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-set scrolloff=6
-
 "" ===
 "" fcitx control
 "" when exiting from insert mode, the fcitx switches to en_US automatically
@@ -224,6 +203,28 @@ autocmd InsertLeave * call Fcitx2en()
 "" when entering in insert mode, switches to zh_CN automatically
 "" default : close
 "autocmd InsertEnter * call Fcitx2zh()
+
+set number
+set relativenumber
+set cul
+
+set list
+set listchars=tab:>-,trail:-
+set laststatus=2
+set ruler
+
+set smartindent
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+
+" very useful
+set backspace=indent,eol,start
+" make cursor stay at the last position of last time
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+set scrolloff=6
+
 
 syntax on
 set showmatch
