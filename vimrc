@@ -22,6 +22,7 @@ map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 noremap K 5k
 noremap J 5j
 map S :w<CR>
+map <space> <nop>
 map s <nop>
 map Q :q<CR>
 
@@ -86,7 +87,7 @@ call plug#end()
 "" ===
 "" set a colorscheme
 "" ===
-color default
+color molokai
 
 "let g:seiya_auto_enable=1
 
@@ -98,7 +99,7 @@ color default
 "let g:gruvbox_termcolors=256
 "let g:gruvbox_italic=1
 "set background=dark
-"let g:gruvbox_contrast_dark='medium'
+"let g:gruvbox_contrast_dark='hard'
 
 
 "" ===
@@ -110,11 +111,13 @@ color default
 set updatetime=100
 " remove the limits of the size of signs
 let g:gitgutter_max_signs = -1
+" make background colours match the sign column
+let g:gitgutter_set_sign_backgrounds = 1
 
 "" ===
 "" airline settings
 "" ===
-let g:airline_theme='ayu_mirage'
+let g:airline_theme= 'base16_google'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'

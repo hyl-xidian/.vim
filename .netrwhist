@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =9
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/lhy/apps'
 let g:netrw_dirhist_9='/home/lhy/scripts'
 let g:netrw_dirhist_8='/home/lhy/documents'
 let g:netrw_dirhist_7='/home/lhy/test_folder/temp'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_4='/home/lhy'
 let g:netrw_dirhist_3='/home/lhy/test_folder'
 let g:netrw_dirhist_2='/home/lhy'
 let g:netrw_dirhist_1='/home/lhy/.sunpinyin'
-let g:netrw_dirhist_0='/home/lhy'
