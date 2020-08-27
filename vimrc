@@ -55,7 +55,7 @@ Plug 'vim-airline/vim-airline-themes'
 " colorscheme 
 "Plug 'morhetz/gruvbox'
 "Plug 'altercation/vim-colors-solarized'
-"Plug 'miyakogi/seiya.vim'
+Plug 'miyakogi/seiya.vim'
 
 " git status plug
 Plug 'airblade/vim-gitgutter'
