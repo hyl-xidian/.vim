@@ -52,10 +52,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" colorscheme 
+" colorscheme
 "Plug 'morhetz/gruvbox'
 "Plug 'altercation/vim-colors-solarized'
-Plug 'miyakogi/seiya.vim'
+"Plug 'miyakogi/seiya.vim'
 
 " git status plug
 Plug 'airblade/vim-gitgutter'
@@ -103,9 +103,9 @@ color molokai
 
 
 "" ===
-"" git status plug 
+"" git status plug
 "" vim-gitgutter
-"" === 
+"" ===
 "" You can jump between hunks with [c and ]c. You can preview, stage, and undo
 "" hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
 set updatetime=100
@@ -159,7 +159,7 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 
 let g:mkdp_open_to_the_world = 0
-let g:mkdp_browser = 'chromium'
+let g:mkdp_browser = 'firefox'
 
 " a custom vim function name to open preview page
 " this function will receive url as param
