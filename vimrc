@@ -25,7 +25,7 @@ map S :w<CR>
 map <space> <nop>
 map s <nop>
 map Q :q<CR>
-
+map Y y$
 "" split screen
 " switch motion
 nmap <LEADER>h <C-w>h
