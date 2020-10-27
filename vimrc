@@ -18,6 +18,8 @@ source $HOME/.vim/md-snippets.vim
 "" ===
 source $HOME/.vim/plug_configuration.vim
 
+nmap md :set modifiable<CR>
+
 set number
 set relativenumber
 set cul

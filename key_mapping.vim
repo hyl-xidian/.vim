@@ -18,6 +18,13 @@ map <LEADER><CR> :nohlsearch<CR>
 " combine with VISUAL motion
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
+" paste motion when paste text from outside
+imap <LEADER>p <Esc>"+p
+
+""coc related key mapping
+nnoremap co :CocCommand<space>
+nnoremap <LEADER>t :CocCommand explorer<CR>
+
 "" self keyboard mapping
 noremap K 5k
 noremap J 5j
@@ -28,7 +35,6 @@ map S :w<CR>
 map Q :q<CR>
 map <space> <nop>
 map s <nop>
-
 
 "" split screen
 " switch motion

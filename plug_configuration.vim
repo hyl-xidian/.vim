@@ -100,9 +100,10 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 "" file navigation settings
 "" ===
 " ranger.vim
+""""!!!!! coc.nvim-explorer is better!!!!
 let g:ranger_map_keys = 0
-map <LEADER>o :Ranger<CR>
-map <LEADER>f :RangerNewTab<CR>
+""map <LEADER>o :Ranger<CR>
+map <LEADER>o :RangerNewTab<CR>
 ""add this line if you use NERDTree
 "let g:NERDTreeHijackNetrw = 0 
 "" open ranger when vim open a directory
@@ -115,6 +116,76 @@ map tm :TableModeToggle<CR>
 
 "" tagbar 
 "nmap <F8> :TagbarToggle<CR>
+
+"" ===
+"" coc.nvim
+"" ===
+let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-marketplace', 'coc-explorer', 'coc-translator']
+" TextEdit might fail if hidden is not set.
+set hidden
+
+"" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" " delays and poor user experience.
+set updatetime=200
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" merge signcolumn and number column into one
+"set signcolumn=number
+
+" Use tab for trigger completion with characters ahead and navigate.
+" " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" " other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" " format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+" " Use `:CocDiagnostics` to get all diagnostics of current buffer in location
+" list.
+nmap <silent> <LEADER>[ <Plug>(coc-diagnostic-prev)
+nmap <silent> <LEADER>] <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> <LEADER>m :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+if (index(['vim','help'], &filetype) >= 0)
+execute 'h '.expand('<cword>')
+elseif (coc#rpc#ready())
+call CocActionAsync('doHover')
+else
+execute '!' . &keywordprg . " " . expand('<cword>')
+endif
+endfunction
+
+"" Applying codeAction to the selected region.
+"" Example: `<leader>aap` for current paragraph
+"xmap <leader>a  <Plug>(coc-codeaction-selected)
+"nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+
 
 "" ===
 "" vim markdown preview
@@ -143,17 +214,17 @@ let g:mkdp_browserfunc = ''
 let g:mkdp_page_title = '「${name}」'
 
 let g:mkdp_preview_options = {
-    \ 'mkit': {},
-    \ 'katex': {},
-    \ 'uml': {},
-    \ 'maid': {},
-    \ 'disable_sync_scroll': 0,
-    \ 'sync_scroll_type': 'middle',
-    \ 'hide_yaml_meta': 1,
-    \ 'sequence_diagrams': {},
-    \ 'flowchart_diagrams': {},
-    \ 'content_editable': v:false
-    \ }
+\ 'mkit': {},
+\ 'katex': {},
+\ 'uml': {},
+\ 'maid': {},
+\ 'disable_sync_scroll': 0,
+\ 'sync_scroll_type': 'middle',
+\ 'hide_yaml_meta': 1,
+\ 'sequence_diagrams': {},
+\ 'flowchart_diagrams': {},
+\ 'content_editable': v:false
+\ }
 
 "" ===
 "" vim signature
