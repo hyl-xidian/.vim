@@ -46,9 +46,10 @@
         "cpp",
         "c",
         "c++",
+        "shell",
         "python"
     ],
-    "explorer.width": 38,
+    "explorer.width": 28,
     "explorer.quitOnOpen": false,
     "explorer.sources": [
         {
@@ -66,7 +67,7 @@
     "explorer.file.column.git.showIgnored": true,
     "explorer.keyMappingMode": "none",
     "explorer.buffer.showHiddenBuffers": false,
-    "explorer.keyMappings": {
+    "explorer.keyMappings.global": {
         "k": "nodePrev",
         "j": "nodeNext",
         "<tab>": "actionMenu",
