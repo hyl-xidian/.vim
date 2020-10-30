@@ -24,6 +24,7 @@ imap <LEADER>p <Esc>"+p
 ""coc related key mapping
 nnoremap co :CocCommand<space>
 nnoremap <LEADER>t :CocCommand explorer<CR>
+nmap md :set modifiable<CR>
 
 "" self keyboard mapping
 noremap K 5k
