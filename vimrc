@@ -11,7 +11,12 @@ runtime! archlinux.vim
 "" Key Mapping
 "" ===
 source $HOME/.vim/key_mapping.vim
-source $HOME/.vim/md-snippets.vim
+
+"" ===
+"" Snippets
+"' ===
+source $HOME/.vim/md_snippets.vim
+source $HOME/.vim/c++_snippets.vim
 
 "" ===
 "" Plug Configuration
@@ -30,6 +35,48 @@ set wildmenu
 
 " THINGS TO CONSIDER:
 " - :b lets you autocomplete any open buffer
+
+" ===
+" TAG JUMPING:
+
+" Create the 'tags' file (may need to install ctags first)
+command! MakeTags !ctags -R .
+
+" NOW WE CAN:
+" - ^ means <Ctrl>
+" - Use ^] to jump under cursor
+" - Use g^] for ambiguous tags
+" - Use ^t to jump back up the tag stack
+
+" THINGS TO CONSIDER:
+" - This doesn't help if you want a visual list of tags
+
+" ===
+" AUTOCOMPLETE:
+" The good stuff is documented in |ins-completion|
+
+" HIGHLIGHTS:
+" - ^x^n for JUST this file
+" - ^x^f for filenames (works with our path trick!)
+" - ^x^] for tags only
+" - ^n for anything specified by the 'complete' option
+
+" NOW WE CAN:
+" - Use ^n and ^p to go back and forth in the suggestion list
+
+" ===
+" SNIPPETS:
+" Example:
+" C++ for_
+" This tricks can be used with placeholder--"<++>"
+
+" nnoremap ,for :-1read$HOME/.vim/code-snippets/c++_for_.snippets<CR>
+
+" more snippets are difined in c++_snippets.vim
+
+" NOW WE CAN:
+" take over the world!
+" (with fewer keystrokes)
 
 set number
 set relativenumber

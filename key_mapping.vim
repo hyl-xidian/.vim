@@ -16,7 +16,7 @@ map <LEADER><CR> :nohlsearch<CR>
 " press SPACE twice to jump to the next '<++>' and edit it
 " similiar as a place-holder
 " combine with VISUAL motion
-map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 " paste motion when paste text from outside
 imap <LEADER>p <Esc>"+p

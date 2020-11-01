@@ -5,24 +5,13 @@
 "|_|   |_|\__,_|\__, |  \____\___/|_| |_|_| |_|\__, |
 "               |___/                          |___/ 
 
-""===
-""Navigation
-""===
-"" ********
-"" colorscheme--->62
-"" git status--->80
-"" airline--->92
-"" ranger navigation--->100
-"" vim table--->112
-"" markdown preview--->120
-"" vim signature--->159
-"" fcitx control--->187
-"" ********
-
 "" ===
 "" install plug
 "" ===
 call plug#begin('~/.vim/plugged')
+
+" coc code complete
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -43,9 +32,6 @@ Plug 'dense-analysis/ale'
 
 " ranger.vim
 Plug 'francoiscabrol/ranger.vim'
-
-" coc code complete
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "vim table mode 
 Plug 'dhruvasagar/vim-table-mode'
