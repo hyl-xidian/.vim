@@ -12,20 +12,20 @@ color molokai
 "" ===
 "" Key Mapping
 "" ===
-source $HOME/.vim/key_mapping.vim
+source $HOME/.vim/basic_func/key_mapping.vim
 
 
 "" ===
 "" Snippets
 "' ===
-source $HOME/.vim/md_snippets.vim
-source $HOME/.vim/c++_snippets.vim
+source $HOME/.vim/basic_func/md_snippets.vim
+source $HOME/.vim/basic_func/c++_snippets.vim
 
 
 "" ===
 "" File Navigation
 "" ===
-source $HOME/.vim/ranger.vim
+source $HOME/.vim/basic_func/ranger.vim
 let g:ranger_map_keys = 0
 ""map <LEADER>o :Ranger<CR>
 map <LEADER>o :RangerNewTab<CR>
@@ -38,12 +38,14 @@ map <LEADER>o :RangerNewTab<CR>
 "" ===
 "" Git status
 "" ===
-source $HOME/.vim/gitgutter.vim
+source $HOME/.vim/basic_func/gitgutter.vim
 set updatetime=100
 " remove the limits of the size of signs
 let g:gitgutter_max_signs = -1
 " make background colours match the sign column
 let g:gitgutter_set_sign_backgrounds = 1
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 
 
 "" ===
@@ -78,7 +80,7 @@ autocmd InsertLeave * call Fcitx2en()
 "" ===
 "" Plug Configuration
 "" ===
-source $HOME/.vim/plug_configuration.vim
+source $HOME/.vim/basic_func/plug_configuration.vim
 
 
 " Search down into subfolders
