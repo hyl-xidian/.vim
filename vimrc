@@ -7,10 +7,13 @@
 
 runtime! archlinux.vim
 
+color molokai
+
 "" ===
 "" Key Mapping
 "" ===
 source $HOME/.vim/key_mapping.vim
+
 
 "" ===
 "" Snippets
@@ -18,10 +21,65 @@ source $HOME/.vim/key_mapping.vim
 source $HOME/.vim/md_snippets.vim
 source $HOME/.vim/c++_snippets.vim
 
+
+"" ===
+"" File Navigation
+"" ===
+source $HOME/.vim/ranger.vim
+let g:ranger_map_keys = 0
+""map <LEADER>o :Ranger<CR>
+map <LEADER>o :RangerNewTab<CR>
+""add this line if you use NERDTree
+"let g:NERDTreeHijackNetrw = 0
+"" open ranger when vim open a directory
+"let g:ranger_replace_netrw = 1
+
+
+"" ===
+"" Git status
+"" ===
+source $HOME/.vim/gitgutter.vim
+set updatetime=100
+" remove the limits of the size of signs
+let g:gitgutter_max_signs = -1
+" make background colours match the sign column
+let g:gitgutter_set_sign_backgrounds = 1
+
+
+"" ===
+"" fcitx control
+"" when exiting from insert mode, the fcitx switches to en_US automatically
+"" http://fcitx.github.io/handbook/chapter-remote.html
+"" ===
+let g:input_toggle = 1
+function! Fcitx2en()
+    let s:input_status = system("fcitx-remote")
+    if s:input_status == 2
+        let g:input_toggle = 1
+        let l:a = system("fcitx-remote -c")
+    endif
+endfunction
+
+"function! Fcitx2zh()
+"    let s:input_status = system("fcitx-remote")
+"    if s:input_status != 2 && g:input_toggle == 1
+"        let l:a = system("fcitx-remote -o")
+"        let g:input_toggle = 0
+"    endif
+"endfunction
+
+set timeoutlen=150
+autocmd InsertLeave * call Fcitx2en()
+"" when entering in insert mode, switches to zh_CN automatically
+"" default : close
+"autocmd InsertEnter * call Fcitx2zh()
+
+
 "" ===
 "" Plug Configuration
 "" ===
 source $HOME/.vim/plug_configuration.vim
+
 
 " Search down into subfolders
 " Provides tab-completion for all file -related tasks

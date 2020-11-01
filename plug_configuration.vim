@@ -10,69 +10,39 @@
 "" ===
 call plug#begin('~/.vim/plugged')
 
-" coc code complete
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+" airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+"vim table mode
+Plug 'dhruvasagar/vim-table-mode'
+
+"vim markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+" coc code complete
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " colorscheme
 "Plug 'morhetz/gruvbox'
 "Plug 'altercation/vim-colors-solarized'
 "Plug 'miyakogi/seiya.vim'
 
-" git status plug
-Plug 'airblade/vim-gitgutter'
+"" git status plug
+"Plug 'airblade/vim-gitgutter'
 
-" Error checking
-Plug 'dense-analysis/ale'
+"" Error checking
+" Plug 'dense-analysis/ale'
 
 "" Taglist
 "Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 
-" ranger.vim
-Plug 'francoiscabrol/ranger.vim'
-
-"vim table mode 
-Plug 'dhruvasagar/vim-table-mode'
-
-"vim markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+"" ranger.vim
+"Plug 'francoiscabrol/ranger.vim'
 
 "" Bookmarks
 "Plug 'kshenoy/vim-signature'
-
 call plug#end()
-
-"" ===
-"" set a colorscheme
-"" ===
-color molokai
-
-"let g:seiya_auto_enable=1
-
-"colorscheme solarized
-"set background=dark
-"let g:solarized_termcolors=256
-
-"colorscheme gruvbox
-"let g:gruvbox_termcolors=256
-"let g:gruvbox_italic=1
-"set background=dark
-"let g:gruvbox_contrast_dark='hard'
-
-
-"" ===
-"" git status plug
-"" vim-gitgutter
-"" ===
-"" You can jump between hunks with [c and ]c. You can preview, stage, and undo
-"" hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
-set updatetime=100
-" remove the limits of the size of signs
-let g:gitgutter_max_signs = -1
-" make background colours match the sign column
-let g:gitgutter_set_sign_backgrounds = 1
 
 "" ===
 "" airline settings
@@ -82,95 +52,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-"" ===
-"" file navigation settings
-"" ===
-" ranger.vim
-""""!!!!! coc.nvim-explorer is better!!!!
-let g:ranger_map_keys = 0
-""map <LEADER>o :Ranger<CR>
-map <LEADER>o :RangerNewTab<CR>
-""add this line if you use NERDTree
-"let g:NERDTreeHijackNetrw = 0 
-"" open ranger when vim open a directory
-"let g:ranger_replace_netrw = 1 
 
 "" ===
 "" vim table mode for markdown
 "" ===
 map tm :TableModeToggle<CR>
-
-"" tagbar 
-"nmap <F8> :TagbarToggle<CR>
-
-"" ===
-"" coc.nvim
-"" ===
-let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-marketplace', 'coc-explorer', 'coc-translator']
-" TextEdit might fail if hidden is not set.
-set hidden
-
-"" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" " delays and poor user experience.
-set updatetime=200
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" merge signcolumn and number column into one
-"set signcolumn=number
-
-" Use tab for trigger completion with characters ahead and navigate.
-" " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-" " Use `:CocDiagnostics` to get all diagnostics of current buffer in location
-" list.
-nmap <silent> <LEADER>[ <Plug>(coc-diagnostic-prev)
-nmap <silent> <LEADER>] <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> <LEADER>m :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-if (index(['vim','help'], &filetype) >= 0)
-execute 'h '.expand('<cword>')
-elseif (coc#rpc#ready())
-call CocActionAsync('doHover')
-else
-execute '!' . &keywordprg . " " . expand('<cword>')
-endif
-endfunction
-
-"" Applying codeAction to the selected region.
-"" Example: `<leader>aap` for current paragraph
-"xmap <leader>a  <Plug>(coc-codeaction-selected)
-"nmap <leader>a  <Plug>(coc-codeaction-selected)
-
 
 
 "" ===
@@ -212,59 +98,119 @@ let g:mkdp_preview_options = {
 \ 'content_editable': v:false
 \ }
 
-"" ===
-"" vim signature
-"" ===
-"let g:SignatureMap = {
-"        \ 'LEADER'             :  "m",
-"        \ 'PlaceNextMark'      :  "m,",
-"        \ 'ToggleMarkAtLine'   :  "m.",
-"        \ 'PurgeMarksAtLine'   :  "dm-",
-"        \ 'DeleteMark'         :  "dm",
-"        \ 'PurgeMarks'         :  "dm/",
-"        \ 'PurgeMarkers'       :  "dm?",
-"        \ 'GotoNextLineAlpha'  :  "m<LEADER>",
-"        \ 'GotoPrevLineAlpha'  :  "",
-"        \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
-"        \ 'GotoPrevSpotAlpha'  :  "",
-"        \ 'GotoNextLineByPos'  :  "",
-"        \ 'GotoPrevLineByPos'  :  "",
-"        \ 'GotoNextSpotByPos'  :  "mn",
-"        \ 'GotoPrevSpotByPos'  :  "mp",
-"        \ 'GotoNextMarker'     :  "",
-"        \ 'GotoPrevMarker'     :  "",
-"        \ 'GotoNextMarkerAny'  :  "",
-"        \ 'GotoPrevMarkerAny'  :  "",
-"        \ 'ListLocalMarks'     :  "m/",
-"        \ 'ListLocalMarkers'   :  "m?"
-"        \ }
-
 
 "" ===
-"" fcitx control
-"" when exiting from insert mode, the fcitx switches to en_US automatically
-"" http://fcitx.github.io/handbook/chapter-remote.html
+"" set a colorscheme
 "" ===
-let g:input_toggle = 1
-function! Fcitx2en()
-    let s:input_status = system("fcitx-remote")
-    if s:input_status == 2
-        let g:input_toggle = 1
-        let l:a = system("fcitx-remote -c")
-    endif
-endfunction
+"let g:seiya_auto_enable=1
 
-function! Fcitx2zh()
-    let s:input_status = system("fcitx-remote")
-    if s:input_status != 2 && g:input_toggle == 1
-        let l:a = system("fcitx-remote -o")
-        let g:input_toggle = 0
-    endif
-endfunction
+"colorscheme solarized
+"set background=dark
+"let g:solarized_termcolors=256
 
-set timeoutlen=150
-autocmd InsertLeave * call Fcitx2en()
-"" when entering in insert mode, switches to zh_CN automatically
-"" default : close
-"autocmd InsertEnter * call Fcitx2zh()
+"colorscheme gruvbox
+"let g:gruvbox_termcolors=256
+"let g:gruvbox_italic=1
+"set background=dark
+"let g:gruvbox_contrast_dark='hard'
 
+
+""$    "" ===
+""$    "" git status plug
+""$    "" vim-gitgutter
+""$    "" ===
+""$    "" You can jump between hunks with [c and ]c. You can preview, stage, and undo
+""$    "" hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
+""$    set updatetime=100
+""$    " remove the limits of the size of signs
+""$    let g:gitgutter_max_signs = -1
+""$    " make background colours match the sign column
+""$    let g:gitgutter_set_sign_backgrounds = 1
+
+""$    "" ===
+""$    "" file navigation settings
+""$    "" ===
+""$    " ranger.vim
+""$    """"!!!!! coc.nvim-explorer is better!!!!
+""$    let g:ranger_map_keys = 0
+""$    ""map <LEADER>o :Ranger<CR>
+""$    map <LEADER>o :RangerNewTab<CR>
+""$    ""add this line if you use NERDTree
+""$    "let g:NERDTreeHijackNetrw = 0 
+""$    "" open ranger when vim open a directory
+""$    "let g:ranger_replace_netrw = 1 
+
+
+"" ===
+"" tagbar
+"" ===
+"nmap <F8> :TagbarToggle<CR>
+
+
+""$    "" ===
+""$    "" coc.nvim
+""$    "" ===
+""$    let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-marketplace', 'coc-explorer', 'coc-translator']
+""$    " TextEdit might fail if hidden is not set.
+""$    set hidden
+""$    
+""$    "" Some servers have issues with backup files, see #649.
+""$    set nobackup
+""$    set nowritebackup
+""$    " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+""$    " " delays and poor user experience.
+""$    set updatetime=200
+""$    " Don't pass messages to |ins-completion-menu|.
+""$    set shortmess+=c
+""$    
+""$    " merge signcolumn and number column into one
+""$    "set signcolumn=number
+""$    
+""$    " Use tab for trigger completion with characters ahead and navigate.
+""$    " " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+""$    " " other plugin before putting this into your config.
+""$    inoremap <silent><expr> <TAB>
+""$        \ pumvisible() ? "\<C-n>" :
+""$        \ <SID>check_back_space() ? "\<TAB>" :
+""$        \ coc#refresh()
+""$    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+""$    
+""$    function! s:check_back_space() abort
+""$        let col = col('.') - 1
+""$        return !col || getline('.')[col - 1]  =~# '\s'
+""$    endfunction
+""$    
+""$    " Make <CR> auto-select the first completion item and notify coc.nvim to
+""$    " " format on enter, <cr> could be remapped by other vim plugin
+""$    inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+""$                                  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+""$    
+""$    " Use `[g` and `]g` to navigate diagnostics
+""$    " " Use `:CocDiagnostics` to get all diagnostics of current buffer in location
+""$    " list.
+""$    nmap <silent> <LEADER>[ <Plug>(coc-diagnostic-prev)
+""$    nmap <silent> <LEADER>] <Plug>(coc-diagnostic-next)
+""$    
+""$    " GoTo code navigation.
+""$    nmap <silent> gd <Plug>(coc-definition)
+""$    nmap <silent> gy <Plug>(coc-type-definition)
+""$    nmap <silent> gi <Plug>(coc-implementation)
+""$    nmap <silent> gr <Plug>(coc-references)
+""$    
+""$    " Use K to show documentation in preview window.
+""$    nnoremap <silent> <LEADER>m :call <SID>show_documentation()<CR>
+""$    
+""$    function! s:show_documentation()
+""$    if (index(['vim','help'], &filetype) >= 0)
+""$    execute 'h '.expand('<cword>')
+""$    elseif (coc#rpc#ready())
+""$    call CocActionAsync('doHover')
+""$    else
+""$    execute '!' . &keywordprg . " " . expand('<cword>')
+""$    endif
+""$    endfunction
+""$    
+""$    "" Applying codeAction to the selected region.
+""$    "" Example: `<leader>aap` for current paragraph
+""$    "xmap <leader>a  <Plug>(coc-codeaction-selected)
+""$    "nmap <leader>a  <Plug>(coc-codeaction-selected)
