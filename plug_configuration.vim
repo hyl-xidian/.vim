@@ -10,9 +10,12 @@
 "" ===
 call plug#begin('~/.vim/plugged')
 
-" airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"" git status plug
+"Plug 'airblade/vim-gitgutter'
+
+"" airline
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 
 "vim table mode
 Plug 'dhruvasagar/vim-table-mode'
@@ -28,9 +31,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 "Plug 'altercation/vim-colors-solarized'
 "Plug 'miyakogi/seiya.vim'
 
-"" git status plug
-"Plug 'airblade/vim-gitgutter'
-
 "" Error checking
 " Plug 'dense-analysis/ale'
 
@@ -44,13 +44,29 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 "Plug 'kshenoy/vim-signature'
 call plug#end()
 
-"" ===
-"" airline settings
-"" ===
-let g:airline_theme= 'base16_google'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+
+""$    "" ===
+""$    "" git status plug
+""$    "" vim-gitgutter
+""$    "" ===
+""$    "" You can jump between hunks with [c and ]c. You can preview, stage, and undo
+""$    "" hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
+""$    set updatetime=100
+""$    " remove the limits of the size of signs
+""$    let g:gitgutter_max_signs = -1
+""$    " make background colours match the sign column
+""$    let g:gitgutter_set_sign_backgrounds = 1
+""$    nmap ]h <Plug>(GitGutterNextHunk)
+""$    nmap [h <Plug>(GitGutterPrevHunk)
+
+
+""$    "" ===
+""$    "" airline settings
+""$    "" ===
+""$    let g:airline_theme= 'base16_google'
+""$    let g:airline#extensions#tabline#enabled = 1
+""$    let g:airline#extensions#tabline#left_sep = ' '
+""$    let g:airline#extensions#tabline#left_alt_sep = '|'
 
 
 "" ===
@@ -114,18 +130,6 @@ let g:mkdp_preview_options = {
 "set background=dark
 "let g:gruvbox_contrast_dark='hard'
 
-
-""$    "" ===
-""$    "" git status plug
-""$    "" vim-gitgutter
-""$    "" ===
-""$    "" You can jump between hunks with [c and ]c. You can preview, stage, and undo
-""$    "" hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
-""$    set updatetime=100
-""$    " remove the limits of the size of signs
-""$    let g:gitgutter_max_signs = -1
-""$    " make background colours match the sign column
-""$    let g:gitgutter_set_sign_backgrounds = 1
 
 ""$    "" ===
 ""$    "" file navigation settings
