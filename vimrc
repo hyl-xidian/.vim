@@ -8,143 +8,20 @@
 "color koehler
 color molokai
 
-autocmd Filetype markdown source $HOME/.vim/plug_configuration.vim
+" Plug-in for different files {{{
 
-" Key Mappings {{{
-" Basic Mappings {{{
-"" ===
-"" === Basic Mappings
-"" ===
-" define 'space' as LEADER key
-let mapleader=" "
+"" When open a file.xxx, VIM identifies the file type according to the extension, and then automatically calls the corresponding plug-in under the ftplugin directory
+" Therefore, the method below is aborted.
+"autocmd Filetype markdown source $HOME/.vim/plug_for_different_files/plug_for_markdown.vim
+"autocmd Filetype cpp,c,json source $HOME/.vim/plug_for_different_files/plug_for_c++.vim
 
-" press SPACE twice to jump to the next '<++>' and edit it
-" as similiar as a place-holder
-noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+" Folder: $HOME/.vim/ftplugin/
+" USAGE: You need to type commad `:PlugInstall` to install these plug-in
+" manually when a specific type of file is opened.
+" Whether install plug-in or not is up to you.
 
-" space + enter means no high light, very useful!!!!
-map <LEADER><CR> :nohlsearch<CR>
+nnoremap <LEADER>p :PlugInstall<CR>
 
-" copy/paste to the System clipboard
-vnoremap <LEADER>y "+y
-inoremap <LEADER>p <Esc>"+p
-"" ctrl + ;
-"" open a memu to select contents from history system clipboard
-"" <Tab> to switch around results
-"" <Space> to paste the chosen contents
-
-" Faster save and quit
-map S :w<CR>
-map Q :q<CR>
-"}}}
-
-" Cursor Movement {{{
-"" ===
-"" === Cursor Movement
-"" ===
-" Faster in-line navigation
-noremap K 5k
-noremap J 5j
-
-" Copy from the cursor location to the end of the line
-nnoremap Y y$
-
-" 9 key: go to the start of the current line
-" 0 key: go to the end of the current line
-noremap <silent> 9 0
-noremap <silent> 0 $
-"}}}
-
-" Command Mode Cursor Movement {{{
-"" ===
-"" === Command Mode Cursor Movement
-"" ===
-cnoremap <C-h> <Left>
-cnoremap <C-l> <End>
-cnoremap <C-k> <Up>
-cnoremap <C-j> <Down>
-"}}}
-
-" Window Management {{{
-"" ===
-"" === Window Management
-"" ===
-" Use <space> + new arrow keys for moving the cursor around windows
-nmap <LEADER>h <C-w>h
-nmap <LEADER>l <C-w>l
-nmap <LEADER>j <C-w>j
-nmap <LEADER>k <C-w>k
-
-" Disable the default s key
-map s <nop>
-
-" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical) and open a new file with ranger
-noremap ok :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>:Ranger<CR>
-noremap oj :set splitbelow<CR>:split<CR>:Ranger<CR>
-noremap oh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>:Ranger<CR>
-noremap ol :set splitright<CR>:vsplit<CR>:Ranger<CR>
-
-" Resize splits with arrow keys
-noremap <up> :res -5<CR>
-noremap <down> :res +5<CR>
-noremap <left> :vertical resize+5<CR>
-noremap <right> :vertical resize-5<CR>
-
-" Place the two screens up and down
-noremap sh <C-w>t<C-w>K
-" Place the two screens side by side
-noremap sv <C-w>t<C-w>H
-
-" Press <SPACE> + q to close the window below the current window
-noremap <LEADER>q <C-w>j:q<CR>
-"}}}
-
-" Tab Management {{{
-"" ===
-"" === Tab Management
-"" ===
-" move around tabs with 'th' and 'tl'
-nmap tl :+tabnext<CR>
-nmap th :-tabnext<CR>
-" open a new tab
-nmap tn :tabnew<CR>
-"}}}
-
-" Buffer Management {{{
-
-"" :ls b --Show all exited buffers
-"" :b NUM --Specify the NUMth buffer
-" Buffer Previous
-nnoremap bh :bp<CR>
-" Buffer Next
-nnoremap bl :bn<CR>
-" Buffer Down --Shutdown the current buffer
-nnoremap bd :bd<CR>
-"}}}
-"}}}
-
-" Snippets {{{
-" Markdown Snippets {{{
-autocmd Filetype markdown inoremap <buffer> ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
-"autocmd Filetype markdown inoremap <buffer> ,w <Esc>/ <++><CR>:nohlsearch<CR>c5l<CR>
-autocmd Filetype markdown inoremap <buffer> ,b **** <++><Esc>F*hi
-autocmd Filetype markdown inoremap <buffer> ,s ~~~~ <++><Esc>F~hi
-autocmd Filetype markdown inoremap <buffer> ,i ** <++><Esc>F*i
-autocmd Filetype markdown inoremap <buffer> ,d `` <++><Esc>F`i
-autocmd Filetype markdown inoremap <buffer> ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA
-autocmd Filetype markdown inoremap <buffer> ,n - [ ] 
-autocmd Filetype markdown inoremap <buffer> ,p ![](<++>) <++><Esc>F[a
-autocmd Filetype markdown inoremap <buffer> ,a [](<++>) <++><Esc>F[a
-autocmd Filetype markdown inoremap <buffer> ,1 #<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap <buffer> ,2 ##<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap <buffer> ,3 ###<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap <buffer> ,4 ####<Space><Enter><++><Esc>kA
-autocmd Filetype markdown inoremap <buffer> ,l --------<Enter>
-"}}}
-
-" C++ Snippets {{{
-autocmd Filetype cpp,c,h nnoremap <buffer> ,for :-1read$HOME/.vim/code-snippets/c++_for_.snippets<CR>
-"}}}
 "}}}
 
 " Useful Functions {{{
@@ -266,6 +143,143 @@ endfunction
 "}}}
 "}}}
 
+" Snippets {{{
+" Markdown Snippets {{{
+autocmd Filetype markdown inoremap <buffer> ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
+"autocmd Filetype markdown inoremap <buffer> ,w <Esc>/ <++><CR>:nohlsearch<CR>c5l<CR>
+autocmd Filetype markdown inoremap <buffer> ,b **** <++><Esc>F*hi
+autocmd Filetype markdown inoremap <buffer> ,s ~~~~ <++><Esc>F~hi
+autocmd Filetype markdown inoremap <buffer> ,i ** <++><Esc>F*i
+autocmd Filetype markdown inoremap <buffer> ,d `` <++><Esc>F`i
+autocmd Filetype markdown inoremap <buffer> ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA
+autocmd Filetype markdown inoremap <buffer> ,n - [ ] 
+autocmd Filetype markdown inoremap <buffer> ,p ![](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap <buffer> ,a [](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap <buffer> ,1 #<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap <buffer> ,2 ##<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap <buffer> ,3 ###<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap <buffer> ,4 ####<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap <buffer> ,l --------<Enter>
+"}}}
+
+" C++ Snippets {{{
+autocmd Filetype cpp,c nnoremap <buffer> ,for :-1read$HOME/.vim/code-snippets/c++_for_.snippets<CR>
+"}}}
+"}}}
+
+" Key Mappings {{{
+" Basic Mappings {{{
+"" ===
+"" === Basic Mappings
+"" ===
+" define 'space' as LEADER key
+let mapleader=" "
+
+" press SPACE twice to jump to the next '<++>' and edit it
+" as similiar as a place-holder
+noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+
+" space + enter means no high light, very useful!!!!
+map <LEADER><CR> :nohlsearch<CR>
+
+" copy/paste to the System clipboard
+vnoremap <LEADER>y "+y
+inoremap <LEADER>p <Esc>"+p
+"" ctrl + ;
+"" open a memu to select contents from history system clipboard
+"" <Tab> to switch around results
+"" <Space> to paste the chosen contents
+
+" Faster save and quit
+map S :w<CR>
+map Q :q<CR>
+"}}}
+
+" Cursor Movement {{{
+"" ===
+"" === Cursor Movement
+"" ===
+" Faster in-line navigation
+noremap K 5k
+noremap J 5j
+
+" Copy from the cursor location to the end of the line
+nnoremap Y y$
+
+" 9 key: go to the start of the current line
+" 0 key: go to the end of the current line
+noremap <silent> 9 0
+noremap <silent> 0 $
+"}}}
+
+" Command Mode Cursor Movement {{{
+"" ===
+"" === Command Mode Cursor Movement
+"" ===
+cnoremap <C-h> <Left>
+cnoremap <C-l> <End>
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
+"}}}
+
+" Window Management {{{
+"" ===
+"" === Window Management
+"" ===
+" Use <space> + new arrow keys for moving the cursor around windows
+nmap <LEADER>h <C-w>h
+nmap <LEADER>l <C-w>l
+nmap <LEADER>j <C-w>j
+nmap <LEADER>k <C-w>k
+
+" Disable the default s key
+map s <nop>
+
+" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical) and open a new file with ranger
+noremap ok :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>:Ranger<CR>
+noremap oj :set splitbelow<CR>:split<CR>:Ranger<CR>
+noremap oh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>:Ranger<CR>
+noremap ol :set splitright<CR>:vsplit<CR>:Ranger<CR>
+
+" Resize splits with arrow keys
+noremap <up> :res -5<CR>
+noremap <down> :res +5<CR>
+noremap <left> :vertical resize+5<CR>
+noremap <right> :vertical resize-5<CR>
+
+" Place the two screens up and down
+noremap sh <C-w>t<C-w>K
+" Place the two screens side by side
+noremap sv <C-w>t<C-w>H
+
+" Press <SPACE> + q to close the window below the current window
+noremap <LEADER>q <C-w>j:q<CR>
+"}}}
+
+" Tab Management {{{
+"" ===
+"" === Tab Management
+"" ===
+" move around tabs with 'th' and 'tl'
+nmap tl :+tabnext<CR>
+nmap th :-tabnext<CR>
+" open a new tab
+nmap tn :tabnew<CR>
+"}}}
+
+" Buffer Management {{{
+
+"" :ls b --Show all exited buffers
+"" :b NUM --Specify the NUMth buffer
+" Buffer Previous
+nnoremap bh :bp<CR>
+" Buffer Next
+nnoremap bl :bn<CR>
+" Buffer Down --Shutdown the current buffer
+nnoremap bd :bd<CR>
+"}}}
+"}}}
+
 " Editor Behavior--Basic Config {{{
 "" ===
 "" === Editor Behavior
@@ -365,6 +379,8 @@ command! MakeTags !ctags -R .
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
+
+set hidden
 
 " Retain revocation history
 set undofile
