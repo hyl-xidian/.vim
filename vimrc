@@ -7,6 +7,8 @@
 
 "color koehler
 color molokai
+" For gvim
+set guifont=SauceCodePro\ Nerd\ Font\ Mono\ 14
 
 " Plug-in for different files {{{
 
@@ -20,7 +22,7 @@ color molokai
 " manually when a specific type of file is opened.
 " Whether install plug-in or not is up to you.
 
-nnoremap <LEADER>p :PlugInstall<CR>
+nnoremap <LEADER>i :PlugInstall<CR>
 
 "}}}
 
@@ -97,10 +99,10 @@ func! CompileRunGcc()
 		exec "!g++ % -o %<"
 		exec "!time ./%<"
 	elseif &filetype == 'cpp'
-		set splitbelow
+        set splitbelow
 		exec "!g++ -std=c++11 % -Wall -o %<"
 		:term ./%<
-        :res -10
+		:res -12
 	elseif &filetype == 'java'
 		exec "!javac %"
 		exec "!time java %<"
@@ -277,6 +279,8 @@ nnoremap bh :bp<CR>
 nnoremap bl :bn<CR>
 " Buffer Down --Shutdown the current buffer
 nnoremap bd :bd<CR>
+" List the buffers
+nnoremap ls :ls b<CR>
 "}}}
 "}}}
 

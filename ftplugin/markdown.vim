@@ -11,15 +11,26 @@
 "" ===
 call plug#begin('~/.vim/plugged')
 
+Plug 'preservim/nerdtree'
+
 "vim table mode
 Plug 'dhruvasagar/vim-table-mode'
 
 "vim markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
+Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
 
-autocmd VimEnter * PlugInstall
+"autocmd VimEnter * PlugInstall
+
+"" ===
+"" === NERD tree
+"" ===
+noremap <LEADER>t :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+
 
 "" ===
 "" vim table mode for markdown

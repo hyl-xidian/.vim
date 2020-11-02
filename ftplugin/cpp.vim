@@ -11,11 +11,15 @@
 "" ===
 call plug#begin('~/.vim/plugged')
 
+Plug 'preservim/nerdtree'
+
 " git status plug
 Plug 'airblade/vim-gitgutter'
 
 " coc code complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'ryanoasis/vim-devicons'
 
 "" Error checking
 " Plug 'dense-analysis/ale'
@@ -24,6 +28,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 
 call plug#end()
+
+"" ===
+"" === NERD tree
+"" ===
+noremap <LEADER>t :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+
 
 "" ===
 "" git status plug
@@ -104,7 +115,7 @@ execute '!' . &keywordprg . " " . expand('<cword>')
 endif
 endfunction
 
-nnoremap <LEADER>t :CocCommand explorer<CR>
+"nnoremap <LEADER>t :CocCommand explorer<CR>
 nnoremap co :CocCommand
 
 "" Applying codeAction to the selected region.
