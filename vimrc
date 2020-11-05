@@ -5,25 +5,120 @@
 ""      |_| |_| |_|\__, |      \_/ |_|_| |_| |_|_|  \___|
 ""                 |___/                                 
 
+" Appereance {{{
 "color koehler
 color molokai
 " For gvim
 set guifont=SauceCodePro\ Nerd\ Font\ Mono\ 14
 
-" Plug-in for different files {{{
+" Set the statusline
+" Preview all highlight groups with `:so $VIMRUNTIME/syntax/hitest.vim
+set statusline=
+set statusline+=%#CursorColumn#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#Keyword#
+set statusline+=\ %F
+set statusline+=%m
+set statusline+=%=
+set statusline+=%#Normal#
+set statusline+=\ %l,%c
+set statusline+=%#Keyword#
+set statusline+=\ %p%%
+set statusline+=%#CursorColumn#
+set statusline+=\ %{&fileformat}:%{&fileencoding?&fileencoding:&encoding}
+set statusline+=%#WarningMsg#
+set statusline+=\ %y
 
-"" When open a file.xxx, VIM identifies the file type according to the extension, and then automatically calls the corresponding plug-in under the ftplugin directory
-" Therefore, the method below is aborted.
-"autocmd Filetype markdown source $HOME/.vim/plug_for_different_files/plug_for_markdown.vim
-"autocmd Filetype cpp,c,json source $HOME/.vim/plug_for_different_files/plug_for_c++.vim
+"}}}
 
-" Folder: $HOME/.vim/ftplugin/
-" USAGE: You need to type commad `:PlugInstall` to install these plug-in
-" manually when a specific type of file is opened.
-" Whether install plug-in or not is up to you.
+" Plug-in {{{
 
-nnoremap <LEADER>i :PlugInstall<CR>
+"" ===
+"" install plug
+"" ===
+call plug#begin('$HOME/.vim/plugged')
 
+Plug 'preservim/nerdtree'
+
+" git status plug
+Plug 'airblade/vim-gitgutter'
+
+"vim table mode
+Plug 'dhruvasagar/vim-table-mode'
+
+"vim markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+Plug 'ryanoasis/vim-devicons'
+
+call plug#end()
+
+"" ===
+"" === NERD tree
+"" ===
+noremap <LEADER>t :NERDTreeToggle<CR>
+let NERDTreeShowHidden=1
+
+
+"" ===
+"" git status plug
+"" vim-gitgutter
+"" ===
+"" You can jump between hunks with [c and ]c. You can preview, stage, and undo
+"" hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
+set updatetime=100
+" remove the limits of the size of signs
+let g:gitgutter_max_signs = -1
+" make background colours match the sign column
+let g:gitgutter_set_sign_backgrounds = 1
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+
+
+"" ===
+"" vim table mode for markdown
+"" ===
+map tm :TableModeToggle<CR>
+
+
+"" ===
+"" vim markdown preview
+"" ===
+map mp :MarkdownPreview<CR>
+map ms :MarkdownPreviewStop<CR>
+
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+
+" set to 1, the MarkdownPreview command can be use for all files,
+" by default it can be use in markdown file
+" default: 0
+let g:mkdp_command_for_global = 0
+
+let g:mkdp_open_to_the_world = 0
+let g:mkdp_browser = 'firefox'
+
+" a custom vim function name to open preview page
+" this function will receive url as param
+" default is empty
+let g:mkdp_browserfunc = ''
+" preview page title
+" ${name} will be replace with the file name
+let g:mkdp_page_title = '「${name}」'
+
+let g:mkdp_preview_options = {
+\ 'mkit': {},
+\ 'katex': {},
+\ 'uml': {},
+\ 'maid': {},
+\ 'disable_sync_scroll': 0,
+\ 'sync_scroll_type': 'middle',
+\ 'hide_yaml_meta': 1,
+\ 'sequence_diagrams': {},
+\ 'flowchart_diagrams': {},
+\ 'content_editable': v:false
+\}
 "}}}
 
 " Useful Functions {{{
@@ -306,24 +401,6 @@ set listchars=tab:>-,trail:-
 
 " Displays the Status Line at the bottom of the window, second to last
 set laststatus=2
-
-" Set the statusline
-" Preview all highlight groups with `:so $VIMRUNTIME/syntax/hitest.vim
-set statusline=
-set statusline+=%#CursorColumn#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#Keyword#
-set statusline+=\ %F
-set statusline+=%m
-set statusline+=%=
-set statusline+=%#Normal#
-set statusline+=\ %l,%c
-set statusline+=%#Keyword#
-set statusline+=\ %p%%
-set statusline+=%#CursorColumn#
-set statusline+=\ %{&fileformat}:%{&fileencoding?&fileencoding:&encoding}
-set statusline+=%#WarningMsg#
-set statusline+=\ %y
 
 " Syntax highlighting
 syntax on
