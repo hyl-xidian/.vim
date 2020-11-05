@@ -222,7 +222,7 @@ func! CompileRunGcc()
 	endif
 endfunc
 
-noremap <C-r> :call CompileRunGcc()<CR>
+noremap <C-r> :call CompileRunGcc()<CR><C-w>k
 "}}}
 
 " Git-Branch Name {{{
