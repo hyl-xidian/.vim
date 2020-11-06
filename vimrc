@@ -43,9 +43,13 @@ set statusline+=\%y
 "" === Editor Behavior
 "" ===
 
-" Turn off bracket matching
-" shift + 5 Jump to the last
+" Do not load the 'matchparen' plug-in
+" Path: /usr/share/vim/vim82/plugin/matchparen.vim
+" Describe: Highlight the matching brackets
 let loaded_matchparen = 1
+
+" Turn off the bracket matching
+set noshowmatch
 
 set lazyredraw
 set ttyfast
