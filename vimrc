@@ -96,6 +96,7 @@ set expandtab
 set hlsearch
 " Enter a character and match it automatically
 set incsearch
+
 " Search for content that contains uppercase characters, it performs a case sensitive search; 
 " if it searches for content that is only lowercase, it performs a case insensitive search
 set ignorecase
@@ -290,11 +291,15 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'bling/vim-bufferline'
 Plug 'mg979/vim-xtabline'
 
+" Undo Tree
+Plug 'mbbill/undotree'
+
 " git status plug
 Plug 'airblade/vim-gitgutter'
 
 Plug 'junegunn/fzf.vim'
 
+"Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 "Plug 'liuchengxu/vista.vim'
 
 "vim table mode
@@ -337,6 +342,24 @@ let g:xtabline_settings.last_open_first = 1
 "noremap \p :echo expand('%:p')<CR>
 
 
+" ===
+" === Undotree
+" ===
+nnoremap <LEADER>u :UndotreeToggle<CR>
+let g:undotree_DiffAutoOpen = 1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 8
+let g:undotree_SplitWidth = 24
+function g:Undotree_CustomMap()
+	nmap <buffer> k <plug>UndotreeNextState
+	nmap <buffer> j <plug>UndotreePreviousState
+	nmap <buffer> K 5<plug>UndotreeNextState
+	nmap <buffer> J 5<plug>UndotreePreviousState
+endfunc
+
+
 "" ===
 "" git status plug
 "" vim-gitgutter
@@ -376,6 +399,26 @@ nnoremap <leader>; :History:<CR>
 let g:fzf_preview_window = 'right:60%'
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
+
+
+""$    " ===
+""$    " === vim-visual-multi
+""$    " ===
+""$    "let g:VM_theme             = 'iceblue'
+""$    "let g:VM_default_mappings = 0
+""$    let g:VM_leader                     = {'default': ',', 'visual': ',', 'buffer': ','}
+""$    let g:VM_maps                       = {}
+""$    "let g:VM_custom_motions             = {'n': 'h', 'i': 'l', 'u': 'k', 'e': 'j', 'N': '0', 'I': '$', 'h': 'e'}
+""$    let g:VM_maps['i']                  = 'k'
+""$    let g:VM_maps['I']                  = 'K'
+""$    let g:VM_maps['Find Under']         = '<C-k>'
+""$    let g:VM_maps['Find Subword Under'] = '<C-k>'
+""$    let g:VM_maps['Find Next']          = ''
+""$    let g:VM_maps['Find Prev']          = ''
+""$    let g:VM_maps['Remove Region']      = 'q'
+""$    "let g:VM_maps['Skip Region']        = '<c-n>'
+""$    let g:VM_maps["Undo"]               = 'l'
+""$    "let g:VM_maps["Redo"]               = '<C-r>'
 
 
 "" ===
@@ -462,7 +505,7 @@ command! Ranger RangerCurrentFile
 command! RangerCurrentDirectoryNewTab call OpenRangerIn("%:p:h", 'tabedit ')
 command! RangerNewTab RangerCurrentDirectoryNewTab
 
-nnoremap <LEADER>f :Ranger<CR>
+nnoremap <LEADER>n :Ranger<CR>
 nnoremap <LEADER>o :RangerNewTab<CR>
 "}}}
 
