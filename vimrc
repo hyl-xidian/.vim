@@ -38,7 +38,7 @@ set statusline+=\%y
 
 "}}}
 
-" Editor Behavior--Basic Config {{{
+" Editor Behavior {{{
 "" ===
 "" === Editor Behavior
 "" ===
