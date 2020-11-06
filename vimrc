@@ -504,7 +504,7 @@ elseif &filetype == 'cpp'
     set splitbelow
     exec "!g++ -std=c++11 % -Wall -o %<"
     :term ./%<
-    :res -12
+    :res -8
 elseif &filetype == 'java'
     exec "!javac %"
     exec "!time java %<"
