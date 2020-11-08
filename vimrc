@@ -42,8 +42,38 @@ set statusline+=\%y
 "" ===
 "" === Editor Behavior
 "" ===
+"
+"" === 
+"" TWO important settings
+"" ===
 
-" Do not load the 'matchparen' plug-in
+"" The length of time Vim waits after you stop typing before it triggers the plugin is governed by the setting updatetime.
+"" DEFAULT:4000(ms)
+"
+"" Affected functions:
+"" vim-gitgutter
+set updatetime=600
+
+"" Key-specific timeoutlen in vim
+"" Example: In normal mode, the 'b' key has been bound to Buffer related operations. Like:bd
+"" bs, but 'b' key also has its default functions--'go back to the previous
+"" word'. So there will be a short delay everytime you press the 'b' key.
+""
+"" 'timeoutlen' is the length of the delay time.
+"" The keys you have typed during the delay time will be identified as
+"" 'Specific-key'
+"" Example: if you type 'b' and 'd' within TIMEOUTLEN, the vim will trigger
+"" 'buffer down'
+""
+"" Affected bindings:
+"" 'oh oj ok ol' and 'o'
+"" 'bh bj bk bl bs bd' and 'b'
+set timeoutlen=500
+nnoremap B b
+nnoremap O o
+nnoremap o <nop>
+
+" Do not load the 'matchparen' plugin
 " Path: /usr/share/vim/vim82/plugin/matchparen.vim
 " Describe: Highlight the matching brackets
 let loaded_matchparen = 1
@@ -277,45 +307,58 @@ nnoremap bs :ls b<CR>
 "}}}
 "}}}
 
-" Plug-in {{{
-
+" Plugins {{{
+" Install {{{
 "" ===
 "" install plug
 "" ===
-call plug#begin('$HOME/.vim/plugged')
 
-Plug 'preservim/nerdtree'
+"" Minpac should be installed under pack/minpac/opt/ in the first directory in the 'packpath' option
+"" So check out which is the first by `set packpath?`
+"
+"" Set packpath maually
+"" set packpath^=~/.vim
+"
+"" NOTE: minpac use the latest feature--'packages'
+"" See: `:help packages` for detail.
 
-Plug 'Xuyuanp/nerdtree-git-plugin'
+function! PackInit() abort
+    packadd minpac
+    call minpac#init()
+    " Nerd tree
+    call minpac#add('preservim/nerdtree', {'type': 'opt'})
+    " Useful buffer display
+    call minpac#add('bling/vim-bufferline', {'type': 'start'})
+    " Exquisite tabline
+    call minpac#add('mg979/vim-xtabline', {'type': 'start'})
+    " Undo Tree
+    call minpac#add('mbbill/undotree', {'type': 'start'})
+    " Git status plug
+    call minpac#add('airblade/vim-gitgutter', {'type': 'start'})
+    " FZF
+    call minpac#add('junegunn/fzf.vim', {'type': 'start'})
+    
+    "" Markdown
+    " Markdown table mode
+    call minpac#add('dhruvasagar/vim-table-mode', {'type':'opt'})
+    "call minpac#add('dhruvasagar/vim-table-mode', {'for':'markdown', 'type':'opt'})
+    " Markdown TOC
+    call minpac#add('mzlogin/vim-markdown-toc', {'type':'opt'})
+    " Markdown preview
+    " Execute commands `:call mkdp#util#install()` after installation. 
+    " Ps: privoxy' may be needed
+    call minpac#add('iamcco/markdown-preview.nvim', {'type': 'opt'})
+endfunction
 
-Plug 'bling/vim-bufferline'
-Plug 'mg979/vim-xtabline'
+command! PackUpdate source $MYVIMRC | call PackInit() | call minpac#update()
+command! PackClean  source $MYVIMRC | call PackInit() | call minpac#clean()
+command! PackStatus packadd minpac | call minpac#status()
 
-" Undo Tree
-Plug 'mbbill/undotree'
+autocmd Filetype markdown packadd markdown-preview.nvim | packadd vim-table-mode | packadd vim-markdown-toc
 
-" git status plug
-Plug 'airblade/vim-gitgutter'
+"}}}
 
-Plug 'junegunn/fzf.vim'
-
-"Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-"Plug 'liuchengxu/vista.vim'
-
-"vim table mode
-Plug 'dhruvasagar/vim-table-mode'
-
-"vim markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-
-" Markdown TOC
-Plug 'mzlogin/vim-markdown-toc'
-
-Plug 'ryanoasis/vim-devicons'
-
-call plug#end()
-
-
+" Configurations {{{
 "" ===
 "" === NERD tree
 "" ===
@@ -367,7 +410,6 @@ endfunc
 "" You can jump between hunks with [c and ]c. You can preview, stage, and undo
 "" hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
 
-"set updatetime=100
 
 " remove the limits of the size of signs
 let g:gitgutter_max_signs = -1
@@ -472,7 +514,7 @@ let g:mkdp_preview_options = {
 "" ===
 let g:vmt_cycle_list_item_markers = 1
 
-
+"}}}
 "}}}
 
 " Useful Functions {{{
@@ -536,7 +578,6 @@ endfunction
 "" default : close
 "autocmd InsertEnter * call Fcitx2zh()
 
-set timeoutlen=150
 autocmd InsertLeave * call Fcitx2en()
 
 "}}}
@@ -562,9 +603,9 @@ elseif &filetype == 'python'
     :sp
     :term python3 %
 elseif &filetype == 'html'
-    silent! exec "!".g:mkdp_browser." % &"
+    exec "!".g:mkdp_browser." % &"
 elseif &filetype == 'markdown'
-    exec "InstantMarkdownPreview"
+    exec "MarkdownPreview"
 elseif &filetype == 'javascript'
     set splitbelow
     :sp
@@ -614,7 +655,7 @@ autocmd Filetype markdown inoremap <buffer> ,l --------<Enter>
 "}}}
 
 " C++ Snippets {{{
-autocmd Filetype cpp,c nnoremap <buffer> ,for :-1read$HOME/.vim/code-snippets/c++_for_.snippets<CR>
+autocmd Filetype cpp,c inoremap <buffer> ,for <Esc>:-1read$HOME/.vim/code-snippets/c++_for_.snippets<CR>
 "}}}
 "}}}
 
