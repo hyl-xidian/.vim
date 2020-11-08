@@ -317,6 +317,7 @@ nnoremap bs :ls b<CR>
 "" So check out which is the first by `set packpath?`
 "
 "" Set packpath maually
+"" Reference: https://vi.stackexchange.com/questions/22359/how-to-change-location-of-vim
 "" set packpath^=~/.vim
 "
 "" NOTE: minpac use the latest feature--'packages'
@@ -337,7 +338,6 @@ function! PackInit() abort
     call minpac#add('airblade/vim-gitgutter', {'type': 'start'})
     " FZF
     call minpac#add('junegunn/fzf.vim', {'type': 'start'})
-    
     "" Markdown
     " Markdown table mode
     call minpac#add('dhruvasagar/vim-table-mode', {'type':'opt'})
