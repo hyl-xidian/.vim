@@ -176,8 +176,9 @@ set noswapfile
 set history=1000
 set showcmd
 
+set autochdir
 " Auto change directory to current dir
-autocmd BufEnter * silent! lcd %:p:h
+"autocmd BufEnter * silent! lcd %:p:h
 
 " Not compatible with Vi
 set nocompatible
