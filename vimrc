@@ -349,6 +349,8 @@ function! PackInit() abort
     " Execute commands `:call mkdp#util#install()` after installation. 
     " Ps: privoxy' may be needed
     call minpac#add('iamcco/markdown-preview.nvim', {'type': 'opt'})
+    " devicons
+    call minpac#add('ryanoasis/vim-devicons', {'type':'start'})
 endfunction
 
 command! PackUpdate source $MYVIMRC | call PackInit() | call minpac#update()
