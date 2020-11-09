@@ -72,6 +72,7 @@ set timeoutlen=500
 nnoremap B b
 nnoremap O o
 nnoremap o <nop>
+nnoremap b <nop>
 
 " Do not load the 'matchparen' plugin
 " Path: /usr/share/vim/vim82/plugin/matchparen.vim
