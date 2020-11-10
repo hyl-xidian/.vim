@@ -220,6 +220,8 @@ nnoremap <F4> :exec exists('syntax_on') ? 'syn off': 'syn on'<CR>
 " Faster save and quit
 map S :w<CR>
 map Q :q<CR>
+
+nnoremap ; :
 "}}}
 
 " Cursor Movement {{{
@@ -340,16 +342,15 @@ function! PackInit() abort
     call minpac#add('airblade/vim-gitgutter', {'type': 'start'})
     " FZF
     call minpac#add('junegunn/fzf.vim', {'type': 'start'})
-    "" Markdown
-    " Markdown table mode
-    call minpac#add('dhruvasagar/vim-table-mode', {'type':'opt'})
-    "call minpac#add('dhruvasagar/vim-table-mode', {'for':'markdown', 'type':'opt'})
+    "" markdown
+    " markdown table mode
+    call minpac#add('dhruvasagar/vim-table-mode', {'type':'start', 'for':'markdown'})
     " Markdown TOC
-    call minpac#add('mzlogin/vim-markdown-toc', {'type':'opt'})
+    call minpac#add('mzlogin/vim-markdown-toc', {'type':'start', 'for':'markdown'})
     " Markdown preview
     " Execute commands `:call mkdp#util#install()` after installation. 
     " Ps: privoxy' may be needed
-    call minpac#add('iamcco/markdown-preview.nvim', {'type': 'opt'})
+    call minpac#add('iamcco/markdown-preview.nvim', {'type': 'start', 'for':'markdown'})
     " devicons
     call minpac#add('ryanoasis/vim-devicons', {'type':'start'})
 endfunction
@@ -357,8 +358,6 @@ endfunction
 command! PackUpdate source $MYVIMRC | call PackInit() | call minpac#update()
 command! PackClean  source $MYVIMRC | call PackInit() | call minpac#clean()
 command! PackStatus packadd minpac | call minpac#status()
-
-autocmd Filetype markdown packadd markdown-preview.nvim | packadd vim-table-mode | packadd vim-markdown-toc
 
 "}}}
 
